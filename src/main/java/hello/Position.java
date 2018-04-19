@@ -4,14 +4,16 @@ public class Position {
     private Integer positionX;
     private Integer positionY;
     private String nickname;
+    private Boolean exist;
 
     Position() {
     }
 
-    public Position(Integer positionX, Integer positionY, String nickname) {
+    public Position(Integer positionX, Integer positionY, String nickname, Boolean exist) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.nickname = nickname;
+        this.exist = exist;
     }
 
     public Integer getPositionX() {
@@ -36,5 +38,13 @@ public class Position {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public Boolean getExist() {
+        return exist;
+    }
+
+    public void setExist(Boolean exist) {
+        this.exist = exist;
     }
 }

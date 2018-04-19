@@ -31,14 +31,11 @@ function update() {
         if (curUserX > example.width + 96/2) {
             curUserX = 0 - 96/2;
         }
-        sendPosition(curUserX,curUserY,  $("#name").val() );
+        sendPosition(curUserX,curUserY,  $("#name").val(), true );
 
         ctx.drawImage(img,0,0, example.width, example.height);
         let curAllPositions = allPositions;
-        console.log("Frame with array:");
-        console.log(curAllPositions);
         for (let i = 0; i < curAllPositions.length; i++) {
-            console.log("draw at " + curAllPositions[i].x + " ; " + curAllPositions[i].y + " ;" );
             ctx.drawImage(plane, curAllPositions[i].x, curAllPositions[i].y , 96, 50);
             ctx.strokeStyle = "#F00";
             ctx.font = "italic 14pt Arial";
@@ -91,6 +88,7 @@ function connect() {
 function disconnect() {
     if (game == true) {
         game = false;
+        sendPosition(curUserX,curUserY,  $("#name").val(), false );
     }
     if (stompClient !== null) {
         stompClient.disconnect();
@@ -99,8 +97,8 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sendPosition(x,y,nickname) {
-    stompClient.send("/app/airplane", {}, JSON.stringify({'positionX': x, 'positionY': y, 'nickname': nickname}));
+function sendPosition(x,y,nickname,exist) {
+    stompClient.send("/app/airplane", {}, JSON.stringify({'positionX': x, 'positionY': y, 'nickname': nickname, 'exist': exist}));
 }
 
 function sendName() {

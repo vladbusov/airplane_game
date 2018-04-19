@@ -31,20 +31,20 @@ public class GreetingController {
     @MessageMapping("/airplane")
     @SendTo("/topic/plane/position")
     public ArrayList fly(Position message) throws Exception {
-        try {
-            if (!players.containsKey(message.getNickname())) {
-                players.put(message.getNickname(), message);
-            } else {
-                players.get(message.getNickname()).setPositionX(message.getPositionX());
-                players.get(message.getNickname()).setPositionY(message.getPositionY());
-            }
-        } catch (NullPointerException ignore ) {
+        if (message.getExist()) {
+            try {
+                if (!players.containsKey(message.getNickname())) {
+                    players.put(message.getNickname(), message);
+                } else {
+                    players.get(message.getNickname()).setPositionX(message.getPositionX());
+                    players.get(message.getNickname()).setPositionY(message.getPositionY());
+                }
+            } catch (NullPointerException ignore) {
 
+            }
+        } else {
+            players.remove(message.getNickname());
         }
-        Thread.sleep(10); // simulated delay
-        System.out.println(players.values());
-        System.out.println("а хеш мапа");
-        System.out.println(players);
         return new ArrayList(players.values());
     }
 
