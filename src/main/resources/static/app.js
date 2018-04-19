@@ -2,6 +2,7 @@ var stompClient = null;
 
 var img = new Image();
 var plane = new Image();
+var degrees = 0;
 
 img.src = 'backend.jpg';
 plane.src = 'plane.png';
@@ -20,13 +21,30 @@ window.onload = function() {
     curUserX = example.width/2;
     curUserY = example.height/2;
     VelX = 2;
-    VelY = 2;
+    VelY = 0;
+    Vel = 2;
     setInterval(update, 1000/30);
 };
 
 
 function update() {
     if (game) {
+
+        ctx.onkeydown = function(e) {
+            switch(e.keyCode) {
+                case 87:
+                degrees = degrees + 10;
+                VelX = Vel*Math.cos(degrees*Math.PI/180);
+                VelY = Vel*Math.sin(degrees*Math.PI/180);
+                break;
+                case 83:
+                degrees = degrees - 10;
+                VelX = Vel*Math.cos(degrees*Math.PI/180);
+                VelY = Vel*Math.sin(degrees*Math.PI/180);
+                break;
+            }
+        }
+
         curUserX = curUserX + VelX;
         if (curUserX > example.width + 96/2) {
             curUserX = 0 - 96/2;
@@ -36,6 +54,8 @@ function update() {
         ctx.drawImage(img,0,0, example.width, example.height);
         let curAllPositions = allPositions;
         for (let i = 0; i < curAllPositions.length; i++) {
+            context.save();
+            context.rotate(degrees*Math.PI/180);
             ctx.drawImage(plane, curAllPositions[i].x, curAllPositions[i].y , 96, 50);
             ctx.strokeStyle = "#F00";
             ctx.font = "italic 14pt Arial";
