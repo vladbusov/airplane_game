@@ -41,7 +41,7 @@ public class GreetingController {
         } catch (NullPointerException ignore ) {
 
         }
-        Thread.sleep(1000/30); // simulated delay
+        Thread.sleep(10); // simulated delay
         System.out.println(players.values());
         System.out.println("а хеш мапа");
         System.out.println(players);

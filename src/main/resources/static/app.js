@@ -8,9 +8,10 @@ plane.src = 'plane.png';
 var game = false;
 var allPositions = [];
 
-function Position(x,y) {
+function Position(x,y,name) {
     this.x = x;
     this.y = y;
+    this.name = name;
 }
 
 window.onload = function() {
@@ -39,6 +40,9 @@ function update() {
         for (let i = 0; i < curAllPositions.length; i++) {
             console.log("draw at " + curAllPositions[i].x + " ; " + curAllPositions[i].y + " ;" );
             ctx.drawImage(plane, curAllPositions[i].x, curAllPositions[i].y , 96, 50);
+            ctx.strokeStyle = "#F00";
+                ctx.font = "italic 20pt Arial";
+                ctx.fillText(curAllPositions[i].nickname, curAllPositions[i].x, curAllPositions[i].y + 23);
         }
         allPositions = [];
     } else {
@@ -78,7 +82,7 @@ function connect() {
             var jsonData = JSON.parse(positions.body);
             for (let i=0; i < jsonData.length; i++) {
                 var counter = jsonData[i];
-                allPositions.push(new Position(counter.positionX, counter.positionY));
+                allPositions.push(new Position(counter.positionX, counter.positionY, counter.nickname));
             }
         });
     });
