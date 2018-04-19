@@ -46,6 +46,7 @@ function update() {
         }
 
         curUserX = curUserX + VelX;
+        curUserY = curUserY + VelY;
         if (curUserX > example.width + 96/2) {
             curUserX = 0 - 96/2;
         }
@@ -54,8 +55,6 @@ function update() {
         ctx.drawImage(img,0,0, example.width, example.height);
         let curAllPositions = allPositions;
         for (let i = 0; i < curAllPositions.length; i++) {
-            context.save();
-            context.rotate(degrees*Math.PI/180);
             ctx.drawImage(plane, curAllPositions[i].x, curAllPositions[i].y , 96, 50);
             ctx.strokeStyle = "#F00";
             ctx.font = "italic 14pt Arial";
