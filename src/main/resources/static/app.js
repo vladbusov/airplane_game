@@ -41,8 +41,8 @@ function update() {
             console.log("draw at " + curAllPositions[i].x + " ; " + curAllPositions[i].y + " ;" );
             ctx.drawImage(plane, curAllPositions[i].x, curAllPositions[i].y , 96, 50);
             ctx.strokeStyle = "#F00";
-                ctx.font = "italic 20pt Arial";
-                ctx.fillText(curAllPositions[i].nickname, curAllPositions[i].x, curAllPositions[i].y + 23);
+            ctx.font = "italic 14pt Arial";
+            ctx.fillText(curAllPositions[i].name, curAllPositions[i].x, curAllPositions[i].y + 40);
         }
         allPositions = [];
     } else {
