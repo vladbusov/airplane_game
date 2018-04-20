@@ -38,6 +38,7 @@ public class GreetingController {
                 } else {
                     players.get(message.getNickname()).setPositionX(message.getPositionX());
                     players.get(message.getNickname()).setPositionY(message.getPositionY());
+                    players.get(message.getNickname()).setDegrees(message.getDegrees());
                 }
             } catch (NullPointerException ignore) {
 

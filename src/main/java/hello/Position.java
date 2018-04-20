@@ -5,15 +5,17 @@ public class Position {
     private Integer positionY;
     private String nickname;
     private Boolean exist;
+    private Integer degrees;
 
     Position() {
     }
 
-    public Position(Integer positionX, Integer positionY, String nickname, Boolean exist) {
+    public Position(Integer positionX, Integer positionY, String nickname, Boolean exist, Integer degrees) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.nickname = nickname;
         this.exist = exist;
+        this.degrees = degrees;
     }
 
     public Integer getPositionX() {
@@ -46,5 +48,13 @@ public class Position {
 
     public void setExist(Boolean exist) {
         this.exist = exist;
+    }
+
+    public Integer getDegrees() {
+        return degrees;
+    }
+
+    public void setDegrees(Integer degrees) {
+        this.degrees = degrees;
     }
 }
